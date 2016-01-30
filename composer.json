@@ -1,0 +1,24 @@
+{
+    "name": "nagoya/php10",
+    "description":" ",
+    "keywords":[
+    ],
+    "license": "MIT",
+    "autoload":{
+        "psr-4":{
+            "Nagoya\\Php10\\": "src/"
+        }
+    },
+    "autoload-dev":{
+        "psr-4":{
+            "Nagoya\\Php10\\": ["tests/"]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "extra": {
+        "branch-alias": {
+            "dev-develop": "0.1.x-dev"
+        }
+    }
+}
