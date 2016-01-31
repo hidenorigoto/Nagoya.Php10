@@ -8,7 +8,7 @@ namespace Nagoya\Php10;
 
 class Php10
 {
-    protected $seets = '';
+    protected $seats = '';
     protected $start = 1;
     protected $end = null;
     protected $checkAndDeciderMap;
@@ -26,7 +26,7 @@ class Php10
     {
         $temp = explode(':', $input);
         $this->end = $temp[0];
-        $this->seets = str_repeat('-', $this->end + 2);
+        $this->seats = str_repeat('-', $this->end + 2);
 
         return $temp[1];
     }
@@ -42,7 +42,7 @@ class Php10
                 $this->processLeaving($arriving);
             }
 
-            echo $this->seets . PHP_EOL;
+            echo $this->seats . PHP_EOL;
         }
 
         return $this->output();
@@ -50,26 +50,26 @@ class Php10
 
     public function processArriving($arriving)
     {
-        $index = $this->findSeet();
+        $index = $this->findSeat();
         if ($index) {
-            $this->seets[$index] = $arriving;
+            $this->seats[$index] = $arriving;
         }
     }
 
     public function processLeaving($leaving)
     {
-        $this->seets = str_replace(strtoupper($leaving), '-', $this->seets);
+        $this->seats = str_replace(strtoupper($leaving), '-', $this->seats);
     }
 
-    public function findSeet()
+    public function findSeat()
     {
         foreach ($this->checkAndDeciderMap as $checking=>$decider) {
-            if (($index = strpos($this->seets, $checking, $decider[1])) === false) continue;
+            if (($index = strpos($this->seats, $checking, $decider[1])) === false) continue;
 
-            if ($seet = call_user_func($decider[0], $index)) return $seet;
+            if ($seat = call_user_func($decider[0], $index)) break;
         }
 
-        return null;
+        return $seat;
     }
 
     public function decide3($found)
@@ -91,6 +91,6 @@ class Php10
 
     public function output()
     {
-        return substr($this->seets, 1, $this->end);
+        return substr($this->seats, 1, $this->end);
     }
 }
